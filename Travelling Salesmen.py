@@ -1,10 +1,12 @@
 import math
 import random
 import time
+from datetime import datetime
 import itertools
 import networkx as nx
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
+from multiprocessing import Process, Queue
 
 def generate_random_map(n, max_coord=1000):
     """Generate a random map with n cities."""
@@ -70,17 +72,33 @@ def christofides_tsp(cities):
     
     return tour, total_distance(tour, cities)
 
-def run_algorithm(algorithm, cities, max_time=1800):
-    """Run an algorithm with a time limit."""
+def run_algorithm_with_timeout(algorithm, cities, max_time, result_queue):
+    """Run the algorithm and put the result in the queue."""
     start_time = time.time()
     tour, distance = algorithm(cities)
     end_time = time.time()
     execution_time = end_time - start_time
-    if execution_time > max_time:
-        return None, None, execution_time
-    return tour, distance, execution_time
+    result_queue.put((tour, distance, execution_time))
 
-def test_algorithms(n, max_time=1800, selected_algorithms=None):
+def run_algorithm(algorithm, cities, max_time=900):
+    """Run an algorithm with a time limit using multiprocessing."""
+    result_queue = Queue()
+    process = Process(target=run_algorithm_with_timeout, args=(algorithm, cities, max_time, result_queue))
+    process.start()
+    process.join(max_time)
+    
+    if process.is_alive():
+        process.terminate()
+        process.join()
+        return None, None, max_time
+    
+    if not result_queue.empty():
+        tour, distance, execution_time = result_queue.get()
+        return tour, distance, execution_time
+    else:
+        return None, None, max_time
+
+def test_algorithms(n, max_time=900, selected_algorithms=None):
     """Test selected algorithms on a random map of size n."""
     cities = generate_random_map(n)
     all_algorithms = {
@@ -102,6 +120,9 @@ def test_algorithms(n, max_time=1800, selected_algorithms=None):
             tours[name] = tour
         else:
             results.append(f"{name:<15}: Exceeded time limit of {max_time} seconds")
+
+        current_time = datetime.now().strftime("%H:%M:%S")
+        print(f"Algorithm Completed: {name}, {current_time}")
     
     return results, cities, tours
 
@@ -160,7 +181,7 @@ def print_results(results):
     print("-" * 60)
 
 def main():
-    max_time = 1800  # 30 minutes in seconds
+    max_time = 1000  # 15 minutes in seconds + 100 seconds
     
     while True:
         try:
@@ -180,6 +201,9 @@ def main():
             if not selected_algorithms:
                 print("No algorithms selected. Please select at least one algorithm.")
                 continue
+
+            current_time = datetime.now().strftime("%H:%M:%S")
+            print(f"\nAlgorithms being Tested: {', '.join(selected_algorithms)}, Time at Exec: {current_time}")
             
             print(f"\nTesting algorithms on a random map with {n} cities:")
             results, cities, tours = test_algorithms(n, max_time, selected_algorithms)
