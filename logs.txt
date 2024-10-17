@@ -1,0 +1,39 @@
+                    RUN, NN, n=21,000
+
+=======================================================================
+How many cities should the algorithms explore? (Enter 0 to exit): 21000
+
+Select algorithms to run:
+Include Brute Force? (y/n, default: n): 
+Include Nearest Neighbor? (y/n, default: n): y
+Include Christofides? (y/n, default: n): 
+
+Algorithms being Tested: Nearest Neighbor, Time at Exec: 17:55:41
+
+Testing algorithms on a random map with 21000 cities:
+Algorithm Completed: Nearest Neighbor, 17:56:14
+
+Results:
+-----------------------------------------------------------------------
+Nearest Neighbor: Distance = 127965.80  Time = 32.14      seconds
+-----------------------------------------------------------------------
+
+                    RUN, NN, n=21,500
+
+=======================================================================
+How many cities should the algorithms explore? (Enter 0 to exit): 21500
+
+Select algorithms to run:
+Include Brute Force? (y/n, default: n): 
+Include Nearest Neighbor? (y/n, default: n): y
+Include Christofides? (y/n, default: n): 
+
+Algorithms being Tested: Nearest Neighbor, Time at Exec: 17:57:18
+
+Testing algorithms on a random map with 21500 cities:
+Algorithm Completed: Nearest Neighbor, 17:57:53
+
+Results:
+-----------------------------------------------------------------------
+Nearest Neighbor: Distance = 129337.34  Time = 34.12      seconds
+-----------------------------------------------------------------------
