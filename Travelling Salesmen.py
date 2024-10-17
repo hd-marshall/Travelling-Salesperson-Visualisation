@@ -80,19 +80,22 @@ def run_algorithm(algorithm, cities, max_time=1800):
         return None, None, execution_time
     return tour, distance, execution_time
 
-def test_algorithms(n, max_time=1800, include_brute_force=True):
-    """Test algorithms on a random map of size n."""
+def test_algorithms(n, max_time=1800, selected_algorithms=None):
+    """Test selected algorithms on a random map of size n."""
     cities = generate_random_map(n)
-    algorithms = [
-        ("Nearest Neighbor", nearest_neighbor_tsp),
-        ("Christofides", christofides_tsp)
-    ]
-    if include_brute_force:
-        algorithms.insert(0, ("Brute Force", brute_force_tsp))
+    all_algorithms = {
+        "Brute Force": brute_force_tsp,
+        "Nearest Neighbor": nearest_neighbor_tsp,
+        "Christofides": christofides_tsp
+    }
+    
+    if selected_algorithms is None:
+        selected_algorithms = all_algorithms.keys()
     
     results = []
     tours = {}
-    for name, algorithm in algorithms:
+    for name in selected_algorithms:
+        algorithm = all_algorithms[name]
         tour, distance, time_taken = run_algorithm(algorithm, cities, max_time)
         if tour is not None:
             results.append(f"{name:<15}: Distance = {distance:<10.2f} Time = {time_taken:<10.2f} seconds")
@@ -166,13 +169,20 @@ def main():
                 print("Exiting the program. Goodbye!")
                 break
             
-            include_brute_force = True
-            if n > 10:
-                choice = input("Include Brute Force algorithm? (y/n, default: n): ").lower()
-                include_brute_force = choice == 'y'
+            selected_algorithms = []
+            print("\nSelect algorithms to run:")
+            algorithms = ["Brute Force", "Nearest Neighbor", "Christofides"]
+            for alg in algorithms:
+                choice = input(f"Include {alg}? (y/n, default: n): ").lower()
+                if choice == 'y':
+                    selected_algorithms.append(alg)
+            
+            if not selected_algorithms:
+                print("No algorithms selected. Please select at least one algorithm.")
+                continue
             
             print(f"\nTesting algorithms on a random map with {n} cities:")
-            results, cities, tours = test_algorithms(n, max_time, include_brute_force)
+            results, cities, tours = test_algorithms(n, max_time, selected_algorithms)
             print_results(results)
             
             visualize_tours(cities, tours)
