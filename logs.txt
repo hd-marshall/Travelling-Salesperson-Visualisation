@@ -37,3 +37,43 @@ Results:
 -----------------------------------------------------------------------
 Nearest Neighbor: Distance = 129337.34  Time = 34.12      seconds
 -----------------------------------------------------------------------
+
+                    RUN, NN, n=21,700
+
+=======================================================================
+How many cities should the algorithms explore? (Enter 0 to exit): 21700
+
+Select algorithms to run:
+Include Brute Force? (y/n, default: n): 
+Include Nearest Neighbor? (y/n, default: n): y
+Include Christofides? (y/n, default: n): 
+
+Algorithms being Tested: Nearest Neighbor, Time at Exec: 18:07:50
+
+Testing algorithms on a random map with 21700 cities:
+Algorithm Completed: Nearest Neighbor, 18:08:25
+
+Results:
+-----------------------------------------------------------------------
+Nearest Neighbor: Distance = 130172.60  Time = 34.73      seconds
+-----------------------------------------------------------------------
+
+                    RUN, NN, n=21,900
+
+=======================================================================
+How many cities should the algorithms explore? (Enter 0 to exit): 21900
+
+Select algorithms to run:
+Include Brute Force? (y/n, default: n): 
+Include Nearest Neighbor? (y/n, default: n): y
+Include Christofides? (y/n, default: n): 
+
+Algorithms being Tested: Nearest Neighbor, Time at Exec: 18:09:41
+
+Testing algorithms on a random map with 21900 cities:
+Algorithm Completed: Nearest Neighbor, 18:10:17
+
+Results:
+------------------------------------------------------------------------
+Nearest Neighbor: Distance = 132004.38  Time = 35.65      seconds
+------------------------------------------------------------------------
