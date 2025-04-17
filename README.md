@@ -1,6 +1,6 @@
 # TSP Algorithm Comparison Tool
 
-An interactive Python implementation for comparing different Traveling Salesman Problem (TSP) algorithms, featuring visualization capabilities and performance analysis.
+An interactive Python implementation for comparing different Traveling Salesman Problem (TSP) algorithms, featuring visualisation capabilities and performance analysis.
 
 ## 🎯 Features
 
@@ -17,27 +17,27 @@ An interactive Python implementation for comparing different Traveling Salesman 
 ## 🔍 Algorithm Details
 
 ### Brute Force
-- Generates all possible permutations to find the optimal solution
-- Guaranteed to find the shortest possible tour
-- Practical for small datasets (n ≤ 10) due to factorial time complexity
+- Generates all possible permutations to find the optimal solution.
+- Guaranteed to find the shortest possible tour.
+- Practical for small datasets (n ≤ 10) due to factorial time complexity.
 
 ### Nearest Neighbor
-- Simple greedy heuristic that always chooses the closest unvisited city
-- Fast execution time, suitable for larger datasets
-- Solution quality varies; typically produces tours 20-30% longer than optimal
+- Simple greedy heuristic that always chooses the closest unvisited city.
+- Fast execution time, suitable for larger datasets.
+- Solution quality varies; typically produces tours 20-30% longer than optimal.
 
 ### Christofides Algorithm
-- Approximation algorithm with guaranteed performance ratio of 1.5
-- Uses minimum spanning tree and perfect matching
-- Good balance between solution quality and computation time
-- Requires NetworkX library for graph operations
+- Approximation algorithm with guaranteed performance ratio of 1.5.
+- Uses minimum spanning tree and perfect matching.
+- Good balance between solution quality and computation time.
+- Requires NetworkX library for graph operations.
 
-## 📊 Visualization
+## 📊 Visualisation
 
-- Interactive matplotlib interface for comparing different solutions
-- Clear representation of city locations and tour paths
-- Navigation buttons to switch between different algorithm results
-- City indices displayed for easy route tracking
+- Interactive matplotlib interface for comparing different solutions.
+- Clear representation of city locations and tour paths.
+- Navigation buttons to switch between different algorithm results.
+- City indices displayed for easy route tracking.
 
 ## 💻 Usage
 
