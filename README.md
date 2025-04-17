@@ -81,7 +81,7 @@ Christofides    : Distance = 3856.23    Time = 0.15    seconds
 ------------------------------------------------------------
 ```
 
-## 🎨 Visualization Features
+## 🎨 Visualisation Features
 
 - Red dots: City locations
 - Blue lines: Tour paths
@@ -89,14 +89,10 @@ Christofides    : Distance = 3856.23    Time = 0.15    seconds
 - Interactive navigation between different algorithm results
 - Previous/Next buttons for comparing solutions
 
-## 📝 License
-
-MIT License - feel free to use and modify as needed!
-
 ## 🤝 Contributing
 
 Contributions are welcome! Some possible areas for improvement:
 - Additional TSP algorithms (2-opt, 3-opt, etc.)
 - More visualization options
-- Performance optimizations
+- Performance optimisations
 - Additional metrics for comparison
